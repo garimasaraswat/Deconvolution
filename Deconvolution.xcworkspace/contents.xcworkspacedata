@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:modules"
-      name = "modules">
-      <FileRef
-         location = "group:__init__.py">
-      </FileRef>
-      <FileRef
-         location = "group:constants.py">
-      </FileRef>
-      <FileRef
-         location = "group:symfn.py">
-      </FileRef>
-      <FileRef
-         location = "group:numfn.py">
-      </FileRef>
-      <FileRef
-         location = "group:solve_sdos.py">
-      </FileRef>
-      <FileRef
-         location = "group:solve_sdos_adv.py">
-      </FileRef>
-      <FileRef
-         location = "group:sim_spectra.py">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:">
+   </FileRef>
 </Workspace>
