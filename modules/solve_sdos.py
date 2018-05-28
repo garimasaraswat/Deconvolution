@@ -17,4 +17,3 @@ def get_sdos(V, dIdV, gamma, delta, T, E_sampling=3000,rcond=1e-5, return_matrix
         return sdos,C
     else:
         return E,sdos,C
-
