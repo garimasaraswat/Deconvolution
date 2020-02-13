@@ -1,2 +1,2 @@
-# Deconvolution
+
 ![equation](decon.png)
