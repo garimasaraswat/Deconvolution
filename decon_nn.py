@@ -130,3 +130,41 @@ if __name__ == '__main__':
             plt.legend()
             plt.grid(True)
             plt.show()
+#--------Plotting---------------
+for i in range(num_locations):
+            V = V_all[i]
+            dIdV_exp = dIdV_exp_all[i]
+            rho_S = fitted_sample_ldos[i]
+            model_vals = []
+            for v in V:
+                E_shifted = E_vals - v
+                f_diff = fermi_dirac(E_shifted, v, T) - fermi_dirac(E_vals, 0.0, T)
+                df_dV = d_fermi_dirac_dV(E_shifted, v, T)
+                rho_T = rho_tip(E_shifted, fitted_tip_params)
+
+                integrand1 = f_diff * rho_T * rho_S
+                integrand2 = df_dV * rho_T * rho_S
+
+                dIdV_val = trapz_torch(integrand1 + integrand2, E_vals)
+                model_vals.append(dIdV_val)
+
+            dIdV_model = torch.stack(model_vals).numpy()
+
+            plt.figure()
+            plt.plot(V.numpy(), dIdV_exp.numpy(), label='Experimental dI/dV')
+            plt.plot(V.numpy(), dIdV_model, label='Fitted dI/dV')
+            plt.xlabel("Bias Voltage (V)")
+            plt.ylabel("dI/dV (arb. units)")
+            plt.title(f"dI/dV at Location {i+1}")
+            plt.legend()
+            plt.grid(True)
+            plt.show()
+
+            plt.figure()
+            plt.plot(E_vals_np, fitted_sample_ldos[i].numpy(), label=f'Fitted Sample LDOS (Loc {i+1})')
+            plt.xlabel("Energy (eV)")
+            plt.ylabel("LDOS")
+            plt.title(f"Sample LDOS at Location {i+1}")
+            plt.legend()
+            plt.grid(True)
+            plt.show()
